@@ -4,7 +4,9 @@
   "description": "esercizio di oggi: **Setup Web App Express**",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node serverMovie.js",
+    "dev": "node --watch serverMovie.js"
   },
   "repository": {
     "type": "git",
