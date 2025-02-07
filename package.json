@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node serverMovie.js",
-    "dev": "node --watch serverMovie.js"
+    "start": "node --env-file=.env serverMovie.js",
+    "dev": "node --env-file=.env --watch serverMovie.js"
   },
   "repository": {
     "type": "git",
@@ -20,7 +20,6 @@
   },
   "homepage": "https://github.com/LordAnthrax94/webapp-express#readme",
   "dependencies": {
-    "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "mysql2": "^3.12.0"
   }
