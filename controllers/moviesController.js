@@ -20,7 +20,7 @@ const index = (req, res) =>{
 
 const show = (req, res) => {
   const id = req.params.id
-  const sql = 'SELECT movies.*, ROUND(AVG(reviews.vote), 1) FROM movies LEFT JOIN reviews ON movies.id = reviews.movie_id WHERE movies.id = ?;'
+  const sql = 'SELECT movies.*, ROUND(AVG(reviews.vote), 1) AS vote FROM movies LEFT JOIN reviews ON movies.id = reviews.movie_id WHERE movies.id = ?;'
 
   connection.query(sql, [id], (err, results) =>{
 
