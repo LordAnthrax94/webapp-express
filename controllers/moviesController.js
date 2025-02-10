@@ -10,7 +10,7 @@ const index = (req, res) =>{
       const movies = results.map(movie =>{
         return{
           ...movie,
-          image: `${req.imagePath}/img/movies/${movie.image}`
+          image: `${req.imagePath}/img/${movie.image}`
         }
     })
       res.json(movies);
@@ -31,7 +31,7 @@ const show = (req, res) => {
       const movies = results.map(movie =>{
         return{
           ...movie,
-          image: `${req.imagePath}/img/movies/${movie.image}`
+          image: `${req.imagePath}/img/${movie.image}`
         }
     })
       res.json(movies[0]);

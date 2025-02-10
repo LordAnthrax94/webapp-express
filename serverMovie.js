@@ -10,7 +10,7 @@ const setImagePath = require('./middlewares/imgPath');
 
 app.use(cors({oring: 'http://localhost:5173/'}))
 
-app.use(express.static('Public'))
+app.use(express.static('public'))
 
 app.use(express.json())
 
