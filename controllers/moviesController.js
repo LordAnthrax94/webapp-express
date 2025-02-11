@@ -59,16 +59,16 @@ const addReview = (req, res) =>{
 }
 
 const store = (req, res) =>{
-  const {title, genre, abstract} = req.body
-  const imgName = req.file.filename
+  const {title, director, abstract} = req.body
+  const imgName = req.file.filename;
 
-  const sql = 'INSERT INTO movies (title, genre, abstract, image) VALUES (?, ?, ?, ?)'
+  const sql = 'INSERT INTO movies (title, director, abstract, image) VALUES (?, ?, ?, ?)'
 
-  connection.query(sql, [title, genre, abstract, image], (err, results) =>{
-    if(err) return res.statos(500).jsn({error: 'Risorsa non trovata'})
+  connection.query(sql, [title, director, abstract, imgName], (err, results) =>{
+    if(err) return res.status(500).json({error: err})
     res.status(201).json({status: 'success', message: 'Film aggiunto con successo'})
   })
-  res.json({message: 'aggiungi film'})
+  
 }
 
 module.exports ={
