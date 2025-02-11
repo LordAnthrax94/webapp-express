@@ -46,11 +46,12 @@ const show = (req, res) => {
 
 const addReview = (req, res) =>{
   const id = req.params.id
+  const {name, text, vote} = req.body
 
   const sql = 'INSERT INTO reviews ( id, name, vote, text) VALUE (?, ?, ?, ?);'
   
   connection.query(sql, [id, name, vote, text], (err, results) =>{
-    if(err) return res.status(500).json({error: 'Recensione non trovata'})
+    if(err) return res.status(500).json({error: 'Risorsa non trovata'})
     res.status(201)
     res.json({message: "Recensione aggiunta", id:results.insertId})
     
