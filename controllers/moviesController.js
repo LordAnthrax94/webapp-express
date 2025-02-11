@@ -65,7 +65,7 @@ const store = (req, res) =>{
 
   connection.query(sql, [title, genre, abstract, image], (err, results) =>{
     if(err) return res.statos(500).jsn({error: 'Risorsa non trovata'})
-    res.status(201)
+    res.status(201).json({status: 'success', message: 'Film aggiunto con successo'})
   })
   res.json({message: 'aggiungi film'})
 }
