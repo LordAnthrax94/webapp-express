@@ -31,16 +31,16 @@ const show = (req, res) => {
 
       connection.query(sqlReview, [id], (err, resultsReview)=>{
         console.log(resultsReview);
+        let movie = results[0];
         
         if (err) return res.status(500).json({error: 'Risorsa non trvata'})
-          movie.reviews = resultsReview
+          movie.reviews = resultsReview        
+        res.json({
+          ...movie,
+          image: `${req.imagePath}/img/${movie.image}`,  
+         
+        }) 
       })
-      let movie = results[0];
-      res.json({
-        ...movie,
-        image: `${req.imagePath}/img/${movie.image}`,  
-       
-      }) 
   })
 }
 
