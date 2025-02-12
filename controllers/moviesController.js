@@ -59,21 +59,45 @@ const addReview = (req, res) =>{
 }
 
 const store = (req, res) =>{
-  const {title, director, abstract} = req.body
+  const {title, director, genre} = req.body
   const imgName = req.file.filename;
 
-  const sql = 'INSERT INTO movies (title, director, abstract, image) VALUES (?, ?, ?, ?)'
+  const sql = 'INSERT INTO movies (title, director, genre, image) VALUES (?, ?, ?, ?)'
 
-  connection.query(sql, [title, director, abstract, imgName], (err, results) =>{
-    if(err) return res.status(500).json({error: err})
-    res.status(201).json({status: 'success', message: 'Film aggiunto con successo'})
-  })
+ connection.query(sql, [title, director, genre, imgName], (err, results) =>{
+   if(err) return res.status(500).json({error: err})
+   res.status(201).json({status: 'success', message: 'Film aggiunto con successo'})
   
+  
+ }) 
+}
+
+const destroy = (req, res) =>{
+ const id = req.params.id  
+
+ const sqlSelect= 'SELECT image FROM movies WHERE id = ?'
+ connection.query(sqlSelect, [id], (err, results)=>{
+  if(err) res.status(500).json({error: 'Risorsa non trovata'})
+    
+    const imageName = results[0].image;
+     const imgPath = destination.join(__dirname, '../public/img/', imageName) 
+    
+     fs.unlink(imgPath, (err) =>{
+      console.log(err);  
+     })
+     const sql = 'DELETE FROM movies WHERE id = ?'
+    
+     connection.query(sql, [id], (err, results) =>{
+        if(err) res.status(500).json({errore: 'Risorsa non trovata'})
+          res.status(204).json({message: 'Film eliminato con successo'})    
+   })
+ })
 }
 
 module.exports ={
   index,
   show,
   addReview,
-  store
+  store,
+  destroy
 }

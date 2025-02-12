@@ -11,7 +11,9 @@ router.get('/:id', movieController.show)
 
 router.post('/:id/reviews', movieController.addReview)
 
-router.post('/add', upload.single('image'), movieController.store)
+router.post('/', upload.single('image'), movieController.store)
+
+router.delete('/:id', movieController.destroy)
 
 
 
