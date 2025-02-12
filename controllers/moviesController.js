@@ -1,4 +1,6 @@
 const connection = require("../data/db")
+const path = require('path')
+const fs = require('fs')
 
 const index = (req, res) =>{
  
@@ -80,7 +82,7 @@ const destroy = (req, res) =>{
   if(err) res.status(500).json({error: 'Risorsa non trovata'})
     
     const imageName = results[0].image;
-     const imgPath = destination.join(__dirname, '../public/img/', imageName) 
+     const imgPath = path.join(__dirname, '../public/img/', imageName) 
     
      fs.unlink(imgPath, (err) =>{
       console.log(err);  
